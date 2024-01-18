@@ -1,3 +1,6 @@
+// First code for my COP3330-301 course.
+
+
 #include <iostream>
 #include <cmath>
 #include <iomanip>
