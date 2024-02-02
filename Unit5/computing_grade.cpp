@@ -12,9 +12,10 @@ int main()
 {
     string student_name[4], given_name;
     double first_test[4], second_test[4], third_test[4];
-    int option;
+    int option = 0;
     bool sentinel = true;
     ifstream input_file;
+    char answer = 'Y';
     string name_file = "student_list.txt";  
     input_file.open(name_file);
 
@@ -31,67 +32,79 @@ int main()
         index++;
     }
    
-    cout<<right<<setfill('#')<<setw(20)<<" Menu "<<setfill('#')<<setw(20)<<"#"<<endl;
-    cout<<"1. Find the student by the name."<<endl;
-    cout<<"2. Compute student's final grade."<<endl;
-    cout<<"3. Compute all students final grades."<<endl;
-    cout<<"4. Quit."<<endl;
-    cout<<right<<setfill('#')<<setw(40)<<"#"<<endl;
+    
+     while (answer == 'Y' )
+     {
+        cout<<right<<setfill('#')<<setw(20)<<" Menu "<<setfill('#')<<setw(20)<<"#"<<endl;
+        cout<<"1. Find the student by the name."<<endl;
+        cout<<"2. Compute student's final grade."<<endl;
+        cout<<"3. Compute all students final grades."<<endl;
+        cout<<"4. Quit."<<endl;
+        cout<<right<<setfill('#')<<setw(40)<<"#"<<endl;
 
-    cout<<"Privide the selected option: ";
-    cin >> option;
+        cout<<"Provide the selected option: ";
+        cin >> option;
 
-    switch (option)
-    {
-    case 1:
-        /* Find the student by the name */
-        cout<<"Provide the student's name: ";
-        cin >> given_name;
-        for(int i=0;i< 4; i++)
+        switch (option)
         {
-            if(given_name == student_name[i])
+        case 1:
+            /* Find the student by the name */
+            cout<<"Provide the student's name: ";
+            cin >> given_name;
+            for(int i=0;i< 4; i++)
             {
-                cout<<given_name<<endl;
-                cout<<"first test: "<< first_test[i] <<" second test: "<< second_test[i] <<" third test: "<< third_test[i]<<endl;
-                sentinel = false;
-                break;
+                if(given_name == student_name[i])
+                {
+                    cout<<given_name<<endl;
+                    cout<<"first test: "<< first_test[i] <<" second test: "<< second_test[i] <<" third test: "<< third_test[i]<<endl;
+                    sentinel = false;
+                    break;
+                }
             }
-        }
-        if(sentinel)
-        {
-            cout<<"The stundet was not in the list."<<endl;
-        }
-
-        break;
-    case 2:
-        /*Compute student's final grade*/
-        cout<<"Provide the student's name: ";
-        cin >> given_name;
-        for(int i=0;i< 4; i++)
-        {
-            if(given_name == student_name[i])
+            if(sentinel)
             {
-                cout<<given_name<<endl;
-                cout<<"final grade: "<< (first_test[i] + second_test[i] + third_test[i])/3 <<endl;
-                break;
+                cout<<"The stundet was not in the list."<<endl;
             }
-        }
-        
-        if(sentinel)
-        {
-            cout<<"The stundet was not in the list."<<endl;
-        }
-        break;
-    case 3:
-        /*Compute all students final grades.*/
-        break;
-    case 4:
-        /*quit.*/
-        break;
-    default:
 
-        break;
-    }
+            break;
+        case 2:
+            /*Compute student's final grade*/
+            cout<<"Provide the student's name: ";
+            cin >> given_name;
+            for(int i=0;i< 4; i++)
+            {
+                if(given_name == student_name[i])
+                {
+                    cout<<given_name<<endl;
+                    cout<<"final grade: "<< (first_test[i] + second_test[i] + third_test[i])/3 <<endl;
+                    break;
+                }
+            }
 
+            if(sentinel)
+            {
+                cout<<"The stundet was not in the list."<<endl;
+            }
+            break;
+        case 3:
+            /*Compute all students final grades.*/
+            for(int i=0; i<4; i++)
+            {
+            cout<< student_name[i] << "-- Final Grade: "<< (first_test[i] + second_test[i] + third_test[i])/3<<endl;
+            }
+            break;
+        case 4:
+            /*quit.*/
+            cout<<"exit program"<<endl;
+            exit(1);
+            break;
+        default:
+
+            break;
+        }
+        cout<< "Do you want to keep using the APP, do Y or N: ";
+        cin >> answer;
+     } 
+     
     return 0;
 }
