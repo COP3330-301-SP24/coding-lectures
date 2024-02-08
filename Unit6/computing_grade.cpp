@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <iomanip>
 
 
 
@@ -9,17 +10,20 @@ using namespace std;
 
 
 void print_menu();
+void test_score(string given_name, string student_name[],double first_test[],double second_test[], double third_test[],int lenght);
+int find_student(string given_name, string student_name[], int lenght);
 
 
 int main()
 {
     string student_name[4], given_name;
     double first_test[4], second_test[4], third_test[4];
+    int length = 4;
     int option = 0;
     bool sentinel = true;
     ifstream input_file;
     char answer = 'Y';
-    string name_file = "student_list.txt";  
+    string name_file = "../Unit5/student_list.txt";  
     input_file.open(name_file);
 
     if(!input_file)
@@ -48,21 +52,7 @@ int main()
             /* Find the student by the name */
             cout<<"Provide the student's name: ";
             cin >> given_name;
-            for(int i=0;i< 4; i++)
-            {
-                if(given_name == student_name[i])
-                {
-                    cout<<given_name<<endl;
-                    cout<<"first test: "<< first_test[i] <<" second test: "<< second_test[i] <<" third test: "<< third_test[i]<<endl;
-                    sentinel = false;
-                    break;
-                }
-            }
-            if(sentinel)
-            {
-                cout<<"The stundet was not in the list."<<endl;
-            }
-
+            test_score(given_name, student_name,first_test,second_test,third_test,length);
             break;
         case 2:
             /*Compute student's final grade*/
@@ -117,4 +107,33 @@ void print_menu()
         cout<<"3. Compute all students final grades."<<endl;
         cout<<"4. Quit."<<endl;
         cout<<right<<setfill('#')<<setw(40)<<"#"<<endl;
+}
+
+int find_student(string given_name, string student_name[], int lenght)
+{
+    int index=-1;
+    bool sentinel = true;
+    for(int i=0;i< lenght; i++)
+    {
+        if(given_name == student_name[i])
+        {
+            cout<<given_name<<endl;
+            index = i;
+            sentinel = false;
+            break;
+        }
+    }
+    if(sentinel)
+    {
+      cout<<"The stundet was not in the list."<<endl;
+    }
+
+    return index;
+}
+
+void test_score(string given_name, string student_name[],double first_test[],double second_test[], double third_test[],int lenght)
+{
+   int index = find_student( given_name, student_name, lenght);
+   if(index != -1){
+   cout<<student_name[index]<<setw(5)<<"first test: "<< first_test[index] <<" second test: "<< second_test[index] <<" third test: "<< third_test[index]<<endl;}
 }
