@@ -12,6 +12,8 @@ using namespace std;
 void print_menu();
 void test_score(string given_name, string student_name[],double first_test[],double second_test[], double third_test[],int lenght);
 int find_student(string given_name, string student_name[], int lenght);
+void average_score(string given_name, string student_name[],double first_test[],double second_test[], double third_test[],int lenght);
+void compute_all_grades(string student_name[],double first_test[],double second_test[], double third_test[], int length);
 
 
 int main()
@@ -58,27 +60,11 @@ int main()
             /*Compute student's final grade*/
             cout<<"Provide the student's name: ";
             cin >> given_name;
-            for(int i=0;i< 4; i++)
-            {
-                if(given_name == student_name[i])
-                {
-                    cout<<given_name<<endl;
-                    cout<<"final grade: "<< (first_test[i] + second_test[i] + third_test[i])/3 <<endl;
-                    break;
-                }
-            }
-
-            if(sentinel)
-            {
-                cout<<"The stundet was not in the list."<<endl;
-            }
+            average_score(given_name, student_name,first_test,second_test,third_test,length);
             break;
         case 3:
             /*Compute all students final grades.*/
-            for(int i=0; i<4; i++)
-            {
-            cout<< student_name[i] << "-- Final Grade: "<< (first_test[i] + second_test[i] + third_test[i])/3<<endl;
-            }
+            compute_all_grades(student_name, first_test, second_test, third_test, length);
             break;
         case 4:
             /*quit.*/
@@ -111,24 +97,26 @@ void print_menu()
 
 int find_student(string given_name, string student_name[], int lenght)
 {
-    int index=-1;
+    //int index=-1;
+    int i;
     bool sentinel = true;
-    for(int i=0;i< lenght; i++)
+    for(i=0;i< lenght; i++)
     {
         if(given_name == student_name[i])
         {
             cout<<given_name<<endl;
-            index = i;
+            //index = i;
             sentinel = false;
             break;
         }
     }
     if(sentinel)
     {
+      i = -1;
       cout<<"The stundet was not in the list."<<endl;
     }
 
-    return index;
+    return i;
 }
 
 void test_score(string given_name, string student_name[],double first_test[],double second_test[], double third_test[],int lenght)
@@ -136,4 +124,19 @@ void test_score(string given_name, string student_name[],double first_test[],dou
    int index = find_student( given_name, student_name, lenght);
    if(index != -1){
    cout<<student_name[index]<<setw(5)<<"first test: "<< first_test[index] <<" second test: "<< second_test[index] <<" third test: "<< third_test[index]<<endl;}
+}
+
+void average_score(string given_name, string student_name[],double first_test[],double second_test[], double third_test[],int lenght)
+{
+    int index = find_student( given_name, student_name, lenght);
+    if(index != -1){
+    cout<<student_name[index]<<setw(5)<<" Average score: "<< (first_test[index]+second_test[index]+third_test[index])/3<<endl;}
+}
+
+void compute_all_grades(string student_name[],double first_test[],double second_test[], double third_test[], int length)
+{
+    for(int i=0; i<length; i++)
+    {
+        cout<< student_name[i] << "-- Final Grade: "<< (first_test[i] + second_test[i] + third_test[i])/3<<endl;
+    }
 }
