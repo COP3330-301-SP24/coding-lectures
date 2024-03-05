@@ -6,10 +6,12 @@ using namespace std;
 
 int main()
 {
-    Car my_car;
     int yr = 2024;
+    Car my_car;
+    Car your_car("Infinity","Turbo","Gray",yr);
+    
     string mad, mod, col;
-    int year;
+    int year_car = 0;
     my_car.set_color("Red");
     my_car.set_made("Nissan");
     my_car.set_model("Kicks");
@@ -21,12 +23,12 @@ int main()
           "Model: "<<my_car.get_model()<<"\n"<<
           "Year: "<<my_car.get_year()<<endl;
 
-    my_car.get_allValues(col, mod, year, mad);
+    your_car.get_allValues(col, mod, year_car, mad);
     cout<<"Your car has the following characteristic: "<<endl;
     cout<<"Color: "<<col<<"\n"<<
           "Made: "<<mad<<"\n"<<
           "Model: "<<mod<<"\n"<<
-          "Year: "<<year<<endl;
+          "Year: "<<year_car<<endl;
 
 
 }

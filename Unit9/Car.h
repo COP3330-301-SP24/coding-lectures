@@ -15,6 +15,7 @@ class Car
         string made;
     public:
         Car();
+        Car(string,string,string,int);
         ~Car();
         string get_color();
         string get_model();

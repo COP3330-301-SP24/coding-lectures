@@ -2,6 +2,14 @@
 
 Car::Car(){}
 
+Car::Car(string mad,string mod,string col,int yr)
+{
+   made = mad;
+   model = mod;
+   color = col;
+   year = yr;
+}
+
 Car::~Car(){}
 
 string Car::get_color()
@@ -42,9 +50,9 @@ void Car::set_model(string mod)
     model = mod;
 }
 
-void Car::set_year(int year)
+void Car::set_year(int yr)
 {
-    year = year;
+    year = yr;
 }
 
 void Car::set_made(string mad)
