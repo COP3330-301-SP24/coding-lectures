@@ -66,7 +66,7 @@ int main()
 
 
     Staff member("Faculty",40,42000);
-   member.set_personInfo("Andres", "Suarez","04-10-1996", 8765);
+    member.set_personInfo("Andres", "Suarez","04-10-1996", 8765);
  
 
 }
