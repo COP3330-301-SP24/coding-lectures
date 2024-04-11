@@ -56,5 +56,44 @@ ostream& operator<<(ostream& os, Array &Obj)
 }
 
 
-const Array& operator+(const Array & Obj); 
+const Array Array::operator+(const Array & Obj)
+{
+    Array result(size);
+
+    for(int i=0; i<size; i++)
+    {
+        result.ptr[i] = this->ptr[i] + Obj.ptr[i];
+    }
+
+    return result;
+}
+
+const Array Array::operator-(const Array & Obj)
+{
+    Array result(size);
+
+    for(int i=0; i<size; i++)
+    {
+        result.ptr[i] = this->ptr[i] - Obj.ptr[i];
+    }
+    return result;
+}
+
+const Array& Array::operator=(const Array& Obj)
+{
+      if(this != &Obj)
+      {
+        this->size = Obj.size;
+        this->ptr = new int[size];
+
+         for(int i=0; i<size; i++)
+            this->ptr[i] = Obj.ptr[i];
+      }
+
+      return *this;
+}
+
+
+
+
 
