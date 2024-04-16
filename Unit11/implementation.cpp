@@ -12,9 +12,9 @@ Array::Array(int size)
     ptr = new int[size];
 }
 
-Array::Array(const Array & obj)
+Array::Array(const Array & obj) //deepcopy constructor
 {
-    size = obj.size;
+    size= obj.size;
     ptr = new int[size];
 
     for(int i=0; i<size; i++)
